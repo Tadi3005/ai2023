@@ -19,7 +19,7 @@ import java.time.Duration;
  * l'ensemble des Case non-creusées individuellement de la CaseMap ont un montant inférieur au montant du Player
  * - le Player décide d'abandonner la partie
  *
- * CTT POUR DETERMINER LA PLUS GRANDE ZONE CREUSEE PAR LE JOUEUR : (Se situe dans la classe ProfilPlayerFactory avec la méthode biggerZone)
+ * CTT POUR DETERMINER LA PLUS GRANDE ZONE CREUSEE PAR LE JOUEUR : Se situe dans la classe ProfilPlayerFactory dans la Javadoc de la méthode biggerZone
  */
 public class GameOverSupervisor {
 	private final GameFactory gameFactory;
