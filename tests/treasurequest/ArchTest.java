@@ -29,9 +29,9 @@ public class ArchTest {
 		JavaClasses classes = new ClassFileImporter().importPackages("treasurequest");
 		
 		ArchRule myRule = classes()
-			    .that().resideInAPackage("treasurequest.supervisors")
+			    .that().resideInAPackage("treasurequest.supervisors..")
 			    .should().onlyBeAccessed()
-			    .byAnyPackage("treasurequest","treasurequest.swing..", "treasurequest.supervisors");
+			    .byAnyPackage("treasurequest","treasurequest.swing..", "treasurequest.supervisors..");
 		
 		myRule.check(classes);
 	}
