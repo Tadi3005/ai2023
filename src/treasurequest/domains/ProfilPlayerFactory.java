@@ -97,7 +97,7 @@ public class ProfilPlayerFactory {
 
         // 2. Pour chaque case adjacente à la case explorer, de même type et pas encore visitée
         for (Coordinate coordinate : caseDigged.keySet()) {
-            if (coordinate.isAdjacent(coord) && caseDigged.get(coordinate).getCaseType() == caseDigged.get(coord).getCaseType() && !coordVisited.contains(coordinate) && coordinate != coord) {
+            if (coordinate.isAdjacent(coord) && caseDigged.get(coordinate).getCaseType() == caseDigged.get(coord).getCaseType() && !coordVisited.contains(coordinate)) {
                 // 2.1. Explorer la zone de la case adjacente
                 Zone zoneExploree = explorerZone(coordinate, caseDigged);
                 // 2.2. Ajouter la zone retournée à la zone de la case à retourner
