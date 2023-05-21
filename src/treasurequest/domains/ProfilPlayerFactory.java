@@ -14,6 +14,8 @@ import java.util.*;
  * Justification :
  * add est en O(1), très rapide car basé sur une fonction de hachage
  * contains est en O(1) aussi très rapide pour la même raison que le add
+ * (la méthode contains est de même complexité que la méthode get de la HashMap
+ * car elle utilise la méthode get de la HashMap en interne pour vérifier si un élément est présent dans l'ensemble)
  */
 public class ProfilPlayerFactory {
     private final ProfilPlayer profilPlayer;
@@ -83,6 +85,7 @@ public class ProfilPlayerFactory {
      * - La méthode fusionateAt est en O(1)
      *
      * Pour résumer la complexité de la méthode biggerZone est en O(n^3) avec n l'ensemble des coordonnées creusées par le joueur
+     * car la méthode biggerZone qui est en O(N) contient une boucle qui est en O(n - 1) qui contient elle même une méthode récursive qui est en O(n - 1)
      */
     private Zone biggerZone(Map<Coordinate, Case> caseDigged) {
         if (caseDigged == null) {
