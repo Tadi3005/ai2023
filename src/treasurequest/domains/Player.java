@@ -2,6 +2,7 @@ package treasurequest.domains;
 
 import java.time.Duration;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +22,7 @@ public class Player {
         this.money = new MoneyPlayer();
         this.timeGame = new TimeGame();
         this.profil = ProfilPlayer.NONE;
-        this.caseDug = new HashMap<>();
+        this.caseDug = new LinkedHashMap<>();
         this.coordinate = new Coordinate(0, 0);
     }
 
