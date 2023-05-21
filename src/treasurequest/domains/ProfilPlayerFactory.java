@@ -1,22 +1,30 @@
 package treasurequest.domains;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /***
  * Représente la création du profil du joueur
+ *
+ * ITERATION 3
+ * CHOIX DU TYPE ET DE L'IMPLEMENTATION de la collection pour mémoriser les cases visitées :
+ * Type de la collection : Set
+ * Justification : On ne veut pas de doublons dans la collection
+ * La méthode add n'ajoutera pas la case si elle est déjà présente dans la collection
+ * Implémentation de la collection : HashSet
+ * Justification :
+ * add est en O(1), très rapide car basé sur une fonction de hachage
+ * contains est en O(1) aussi très rapide pour la même raison que le add
  */
 public class ProfilPlayerFactory {
     private final ProfilPlayer profilPlayer;
-    private final List<Coordinate> coordVisited;
+    private final Set<Coordinate> coordVisited;
 
     /**
      * Constructeur de la classe ProfilPlayerFactory
      * @param caseDug la map des cases creusées par le joueur
      */
     public ProfilPlayerFactory(Map<Coordinate, Case> caseDug) {
-        this.coordVisited = new ArrayList<>();
+        this.coordVisited = new HashSet<>();
         this.profilPlayer = caseDug == null ? ProfilPlayer.NONE : createProfilPlayer(caseDug);
     }
 
@@ -59,6 +67,22 @@ public class ProfilPlayerFactory {
      * Retourne la plus grande zone
      * @param caseDigged la map des cases creusées par le joueur
      * @return la plus grande zone
+     *
+     * Une première boucle va boucler sur l'ensemble des cases de la carte. Cette méthode est en O(n) avec n l'ensemble des coordonnées creusées par le joueur
+     * Dans cette boucle :
+     * - La méthode contains est en O(1)
+     * - La méthode compareTo est en O(1)
+     * - La méthode exploreZone qui :
+     * - add la cordonnée de la case courante est en O(1)
+     * Une deuxième boucle qui va boucler sur l'ensemble de coordonnées en O(n - 1) avec n l'ensemble des coordonnées creusées par le joueur et -1 la case courante
+     * Dans cette boucle :
+     * - La méthode isAdjacent est en O(1)
+     * - La méthode get est en O(1)
+     * - La méthode getCaseType est en O(1)
+     * - Un appel récursif à la méthode exploreZone qui est en O(n - 1) avec n (dans le pire des cas si l'ensemble des cases creusés par le joeuur ne sont pas adjacente) l'ensemble des coordonnées creusées par le joueur et -1 la case courante
+     * - La méthode fusionateAt est en O(1)
+     *
+     * Pour résumer la complexité de la méthode biggerZone est en O(n^3) avec n l'ensemble des coordonnées creusées par le joueur
      */
     private Zone biggerZone(Map<Coordinate, Case> caseDigged) {
         if (caseDigged == null) {
